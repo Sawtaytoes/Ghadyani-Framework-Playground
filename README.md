@@ -1,4 +1,5 @@
-# Ghadyani Framework for Webpack, React, and Redux
+# Ghadyani Framework Playground
+Playground for testing React components with various tooling using the Ghadyani Framework for Webpack, React, and Redux.
 
 ## Prerequisites
 
