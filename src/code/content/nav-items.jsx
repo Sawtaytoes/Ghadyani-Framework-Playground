@@ -4,9 +4,8 @@ export default [{
 	to: '',
 	description: ""
 }, {
-	displayInHeader: true,
-	name: 'About',
-	to: 'about',
+	name: 'Calendar',
+	to: 'calendar',
 	description: ""
 }, {
 	name: 'Unit Tests',

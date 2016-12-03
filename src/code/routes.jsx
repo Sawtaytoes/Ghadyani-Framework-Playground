@@ -28,8 +28,8 @@ export default class Routes extends PureComponent {
 			pattern: '/',
 			exactly: true,
 		}, {
-			name: 'about',
-			pattern: '/about',
+			name: 'calendar',
+			pattern: '/calendar',
 		}, {
 			name: '404',
 		}].map(route => ({
