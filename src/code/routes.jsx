@@ -31,6 +31,9 @@ export default class Routes extends PureComponent {
 			name: 'calendar',
 			pattern: '/calendar',
 		}, {
+			name: 'rx-observables',
+			pattern: '/rx-observables',
+		}, {
 			name: '404',
 		}].map(route => ({
 			...route,

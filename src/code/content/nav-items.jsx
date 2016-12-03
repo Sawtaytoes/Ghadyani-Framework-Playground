@@ -8,6 +8,10 @@ export default [{
 	to: 'calendar',
 	description: ""
 }, {
+	name: 'Rx Observables',
+	to: 'rx-observables',
+	description: ""
+}, {
 	name: 'Unit Tests',
 	to: 'tests',
 }]
