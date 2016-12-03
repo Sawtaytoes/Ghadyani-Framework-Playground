@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 
+// Components
+import Master from 'layouts/master'
+
 const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
 	constructor() {
@@ -9,9 +12,6 @@ export default class Routes extends PureComponent {
 		this.views = {}
 
 		this.redirs = [{
-			pattern: '/redirect',
-			to: '/',
-		}, {
 			pattern: '**/',
 			to: ({ location }) => location.pathname.slice(0, -1),
 			exactly: true,
@@ -101,9 +101,9 @@ export default class Routes extends PureComponent {
 	}
 
 	render() { return (
-		<div>
+		<Master>
 			{this.renderRoutes()}
 			{this.renderRedirs()}
-		</div>
+		</Master>
 	)}
 }
