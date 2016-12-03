@@ -7,7 +7,14 @@ const initialState = {}
 export const getNumberCountersInitialState = () => initialState
 
 export default (state = initialState, action) => {
-	const { type, selectedDate, selectedMonth, selectedYear, visibleMonth, visibleYear } = action
+	const {
+		type,
+		selectedDate,
+		selectedMonth,
+		selectedYear,
+		visibleMonth,
+		visibleYear,
+	} = action
 
 	switch (type) {
 	case CHANGE_SELECTED_DATE:
