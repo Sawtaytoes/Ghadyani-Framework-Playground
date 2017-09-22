@@ -1,12 +1,12 @@
-export const MOUSE_MOVED = 'MOUSE_MOVED'
+export const MOUSE_MOVED = 'MOUSE_BEHAVIORS::MOUSE_MOVED'
 
-export const mouseCoordinates = (x, y) => ({
+export const updateMouseLocation = (x, y) => ({
 	type: MOUSE_MOVED,
 	x,
-	y
+	y,
 })
 
-const initialState = {
+export const initialState = {
 	x: 0,
 	y: 0,
 }
