@@ -4,10 +4,15 @@ export default [{
 	name: 'Home',
 	to: '',
 }, {
-	description: "All about nothing.",
 	displayInHeader: true,
-	name: 'About',
-	to: 'about',
+	name: 'Calendar',
+	to: 'calendar',
+	description: "",
+}, {
+	displayInHeader: true,
+	name: 'Rx Observables',
+	to: 'rx-observables',
+	description: "",
 }, {
 	name: 'Unit Tests',
 	to: 'tests',
