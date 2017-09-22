@@ -127,11 +127,11 @@ class Calendar extends PureComponent {
 	)}
 
 	render() { return (
-		<article className="calendar">
+		<div className="calendar">
 			{this.renderLabels()}
 			{this.renderControls()}
 			{this.renderCalendar()}
-		</article>
+		</div>
 	)}
 }
 
