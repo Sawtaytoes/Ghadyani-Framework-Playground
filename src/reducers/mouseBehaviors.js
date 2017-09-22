@@ -6,7 +6,12 @@ export const mouseCoordinates = (x, y) => ({
 	y
 })
 
-export default (state = {}, action) => {
+const initialState = {
+	x: 0,
+	y: 0,
+}
+
+export default (state = initialState, action) => {
 	const {
 		type,
 		x,
