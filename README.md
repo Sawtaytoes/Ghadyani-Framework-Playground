@@ -6,72 +6,68 @@ Playground for testing React components with various tooling using the Ghadyani 
 ### Required
 - [Git](http://www.git-scm.com/downloads) (2.6.1 or higher)
 - [NodeJS](https://nodejs.org/en/download/) (6.2.2 or higher)
-- [npm](https://docs.npmjs.com/) (3.7.2 or higher)
+- [yarn](https://yarnpkg.com/en/) (0.21.2 or higher)
 - [Visual Studio](https://www.microsoft.com/en-us/download/details.aspx?id=48131) (2013 only) `Windows only`
 
 ### Optional
-- [Heroku Toolbelt](https://toolbelt.heroku.com/) (3.42.25) `Deploying to Heroku`
 - [MailDev](http://danfarrelly.nyc/MailDev/) `Local Mail Server for Testing Email`
 
 
 ## Setup
 
-### Assets
-```shell
-npm config set msvs_version 2013 --global # Windows requires VS2013 installed
-npm install -g npm coffee-script # Upgrades npm and sets coffee-script to run in CLI
-npm install
-```
-
-### Configuration Customization
-
 #### Config Settings
-Default configs are `config-settings.coffee`. Here's an example of what defaults might look like
-```coffee
-env: 'production'                            # Can be 'development' or 'production'.
+Default configs are `configSettings.js`. Here's an example of what defaults might look like
+```js
+env: 'production',                            // Can be 'development' or 'production'.
 
-## Server
-protocol: 'http'                             # Using `https` requires valid certificates.
-hostname: '0.0.0.0'                          # Can be 0.0.0.0 for binding to all ports.
-port: 3000                                   # Port of webserver.
-# proxyPort: 3001                            # Optional. Will be `port + 1` if not defined.
+//- Server
+protocol: 'http',                             // Using `https` requires valid certificates.
+hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all ports.
+port: 3000,                                   // Port of webserver.
+// proxyPort: 3001,                           // Optional. Will be `port + 1` if not defined.
 
-## Testing
-testsPath: '/tests'                          # Path used when performing unit-tests
+//- Testing
+testsPath: '/tests',                          // Path used when performing unit-tests
 
-## Email Submission
-mailSendPath: '/contact/send'                # Path that's used when doing a POST to send mail.
-mailOptions:                                 # Options for Nodemailer.
-	from: 'Fake User <fake.user@example.com>' # When sending mail, this appears in the `FROM` field
-smtpCredentials:                             # Configuration for a local maildev server.
-	host: 'localhost'
-	port: 1025
-	tls: rejectUnauthorized: false
+//- Email Submission
+mailSendPath: '/contact/send',                // Path that's used when doing a POST to send mail.
+mailOptions: {                                // Options for Nodemailer.
+	from: 'Fake User <fake.user@example.com>', // When sending mail, this appears in the `FROM` field
+},
+smtpCredentials: {                            // Configuration for a local maildev server.
+	host: 'localhost',
+	port: 1025,
+	tls: {
+		rejectUnauthorized: false,
+	}
+}
 ```
 
-To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./includes/config.coffee` file and have it return an object with overrides like so:
+To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./server/configs/config.js` file and have it return an object with overrides like so:
 
-```coffee
-module.exports =
-	env: 'development'
-	protocol: 'https'
-	port: 443
+```js
+module.exports = {
+	env: 'development',
+	protocol: 'https',
+	port: 443,
+}
 ```
 
 
 #### SMTP Configuration
-Example using **maildev** (`npm install -g maildev`):
+Example using **maildev** (`npm i -g maildev`):
 
-```coffee
-smtpCredentials:
-    host: 'localhost'
-    port: 1025
-    tls: rejectUnauthorized: false
+```js
+smtpCredentials: {
+	host: 'localhost',
+	port: 1025,
+	tls: { rejectUnauthorized: false },
+}
 ```
 
 Example gmail.com string:
 
-```coffee
+```js
 smtpCredentials: 'smtps://user%40gmail.com:pass@smtp.gmail.com'
 ```
 
@@ -82,13 +78,18 @@ Start the local catch-all SMTP server using the command `maildev`.
 
 ### Development: Local
 ```shell
+yarn start
+```
+
+OR
+```shell
 bash local.sh
 ```
 
 OR
 
 ```shell
-coffee index.coffee
+node index.js
 ```
 
 ### Production: Hosted VPS
@@ -118,7 +119,7 @@ If you update the update.sh file, make sure to run `git pull` prior to running t
 
 #### Stop the Server
 ```shell
-bash stop-server.sh
+bash stopServer.sh
 ```
 
 ### Create SSL Cert
@@ -175,14 +176,13 @@ Let's Encrypt allows renewing using:
 ### Create & Update Dev SSL Certs
 > For ServiceWorker compatibility, update or use these certs along with `https` in `network-protocol`.
 
-Using [ZeroSSL](https://zerossl.com/free-ssl):
+Using [ZeroSSL](https://zerossl.com/free-ssl) and their [FREE SSL Certificate Wizard](https://zerossl.com/free-ssl/#crt):
 
-- Account ID is 2400598
 - Files are located in `conf/`
 
 ### Linting
 Install packages globally for Sublime Text's `SublimeLinter-contrib-eslint` plugin.
 
 ```shell
-npm install -g babel-eslint eslint-plugin-react
+npm i -g babel-eslint eslint-plugin-react
 ```

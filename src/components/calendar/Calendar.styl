@@ -1,0 +1,47 @@
+@charset 'UTF-8'
+@require '~utils/styleVars'
+
+.calendar
+	user-select: none
+
+.calendar__labels
+	display flex
+	justify-content space-around
+	// font-size rem(120)
+
+.calendar__label__month
+	padding 0 5%
+
+.calendar__label__year
+	padding 0 5%
+
+.calendar__month
+	display flex
+	flex-wrap wrap
+	justify-content flex-start
+	align-items center
+
+.calendar__date
+	flex 0 0 (1/7)*100%
+	line-height 5
+	text-align center
+	background-color lightgrey
+
+	&:hover
+		background-color lightblue
+
+	&.is-selected
+		background-color skyblue
+
+
+.calendar__controls
+	display flex
+	justify-content space-around
+	font-size rem(120)
+
+.calendar__control
+	&:hover
+		color lightblue
+
+// .calendar__control__prev
+// .calendar__control__next
