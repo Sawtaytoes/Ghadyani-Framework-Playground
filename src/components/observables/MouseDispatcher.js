@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { PureComponent } from 'react'
-// import Rx from 'rxjs/Rx'
 import { connect } from 'react-redux'
 
 import {
@@ -26,25 +25,6 @@ export class MouseDispatcher extends PureComponent {
 	componentWillUnmount() {
 		this.props.endMouseCapture()
 	}
-
-	// subscribeToMouseMove() {
-	// 	const { updateMouseLocation } = this.props
-
-	// 	this.mouseMove$ = (
-	// 		Rx.Observable
-	// 		.fromEvent(document, 'mousemove')
-	// 		// .take(4)
-	// 		// .debounceTime(250)
-	// 	)
-
-	// 	this.mouseMoveUnsubscribe = (
-	// 		this.mouseMove$.subscribe(
-	// 			({ clientX, clientY }) => updateMouseLocation(clientX, clientY),
-	// 			console.error,
-	// 			() => console.log('Done caring about mouse movements.'),
-	// 		)
-	// 	)
-	// }
 
 	render() {
 		return null
