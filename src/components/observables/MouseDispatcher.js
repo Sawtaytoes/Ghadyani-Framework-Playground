@@ -1,50 +1,50 @@
 import PropTypes from 'prop-types'
 import { PureComponent } from 'react'
-import Rx from 'rxjs/Rx'
+// import Rx from 'rxjs/Rx'
 import { connect } from 'react-redux'
 
-import { updateMouseLocation } from 'reducers/mouseBehaviors'
+import {
+	endMouseCapture,
+	startMouseCapture,
+} from 'reducers/mouseBehaviors'
 
 export class MouseDispatcher extends PureComponent {
 	static propTypes = {
-		updateMouseLocation: PropTypes.func.isRequired,
+		endMouseCapture: PropTypes.func.isRequired,
+		startMouseCapture: PropTypes.func.isRequired,
 	}
 
 	componentDidUpdate() {
-		this.unsubscribeFromMouseMove()
-		this.subscribeToMouseMove()
+		this.props.endMouseCapture()
+		this.props.startMouseCapture()
 	}
 
 	componentWillMount() {
-		this.subscribeToMouseMove()
+		this.props.startMouseCapture()
 	}
 
 	componentWillUnmount() {
-		this.unsubscribeFromMouseMove()
+		this.props.endMouseCapture()
 	}
 
-	subscribeToMouseMove() {
-		const { updateMouseLocation } = this.props
+	// subscribeToMouseMove() {
+	// 	const { updateMouseLocation } = this.props
 
-		this.mouseMove$ = (
-			Rx.Observable
-			.fromEvent(document, 'mousemove')
-			// .take(4)
-			// .debounceTime(250)
-		)
+	// 	this.mouseMove$ = (
+	// 		Rx.Observable
+	// 		.fromEvent(document, 'mousemove')
+	// 		// .take(4)
+	// 		// .debounceTime(250)
+	// 	)
 
-		this.mouseMoveUnsubscribe = (
-			this.mouseMove$.subscribe(
-				({ clientX, clientY }) => updateMouseLocation(clientX, clientY),
-				console.error,
-				() => console.log('Done caring about mouse movements.'),
-			)
-		)
-	}
-
-	unsubscribeFromMouseMove() {
-		this.mouseMoveUnsubscribe()
-	}
+	// 	this.mouseMoveUnsubscribe = (
+	// 		this.mouseMove$.subscribe(
+	// 			({ clientX, clientY }) => updateMouseLocation(clientX, clientY),
+	// 			console.error,
+	// 			() => console.log('Done caring about mouse movements.'),
+	// 		)
+	// 	)
+	// }
 
 	render() {
 		return null
@@ -52,7 +52,8 @@ export class MouseDispatcher extends PureComponent {
 }
 
 const mapDispatchToProps = {
-	updateMouseLocation,
+	endMouseCapture,
+	startMouseCapture,
 }
 
 export default connect(null, mapDispatchToProps)(MouseDispatcher)
