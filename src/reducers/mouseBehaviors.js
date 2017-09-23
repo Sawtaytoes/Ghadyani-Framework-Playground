@@ -26,11 +26,11 @@ export const mouseBehaviorsEpic = action$ => (
 		Rx.Observable
 		.fromEvent(document, 'mousemove')
 		.throttleTime(1/60 * 1000)
+		.map(
+			({ clientX, clientY }) => updateMouseLocation(clientX, clientY)
+		)
+		.takeUntil(action$.ofType(END_CAPTURE))
 	))
-	.map(
-		({ clientX, clientY }) => updateMouseLocation(clientX, clientY)
-	)
-	.takeUntil(action$.ofType(END_CAPTURE))
 )
 
 // Get Framerate
