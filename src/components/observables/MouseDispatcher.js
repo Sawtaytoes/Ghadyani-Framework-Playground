@@ -1,34 +1,35 @@
 import PropTypes from 'prop-types'
-import { PureComponent } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+
+import LifeCycles from 'components/life-cycles/LifeCycles'
 
 import {
 	endMouseCapture,
 	startMouseCapture,
 } from 'reducers/mouseBehaviors'
 
-export class MouseDispatcher extends PureComponent {
-	static propTypes = {
-		endMouseCapture: PropTypes.func.isRequired,
-		startMouseCapture: PropTypes.func.isRequired,
+const componentDidUpdate = (
+	(endMouseCapture, startMouseCapture) => () => {
+		endMouseCapture()
+		startMouseCapture()
 	}
+)
 
-	componentDidUpdate() {
-		this.props.endMouseCapture()
-		this.props.startMouseCapture()
-	}
+const MouseDispatcher = ({
+	endMouseCapture,
+	startMouseCapture
+}) => (
+	<LifeCycles
+		componentDidUpdate={componentDidUpdate(endMouseCapture, startMouseCapture)}
+		componentWillMount={startMouseCapture}
+		componentWillUnmount={endMouseCapture}
+	/>
+)
 
-	componentWillMount() {
-		this.props.startMouseCapture()
-	}
-
-	componentWillUnmount() {
-		this.props.endMouseCapture()
-	}
-
-	render() {
-		return null
-	}
+MouseDispatcher.propTypes = {
+	endMouseCapture: PropTypes.func.isRequired,
+	startMouseCapture: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = {
