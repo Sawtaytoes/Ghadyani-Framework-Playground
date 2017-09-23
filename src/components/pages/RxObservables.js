@@ -8,13 +8,14 @@ import MouseLocation from 'components/observables/MouseLocation'
 
 const RxObservablesView = () => (
 	<div>
-		<div>
+		<MouseLocation />
+
+		<div style={{ position: 'relative', zIndex: 1 }}>
 			<Link to="/" title="Go Back">{'<'} Go Back</Link>
 		</div>
 
 		<MouseCoordinates />
 		<MouseDispatcher />
-		<MouseLocation />
 	</div>
 )
 

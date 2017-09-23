@@ -2,22 +2,14 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-// Components
 import AutosizeText from './AutosizeText'
+import renderStyles from 'renderers/renderStyles'
 
-// Actions
 import {
 	selectDate,
 	changeToPrevMonth,
 	changeToNextMonth,
 } from 'reducers/calendar'
-
-// Utilities
-import StylesLoader from 'components/styles-loader/StylesLoader'
-
-// Styles
-const stylesLoader = StylesLoader.create()
-.add(require('./Calendar.styl'))
 
 class Calendar extends PureComponent {
 	static propTypes = {
@@ -135,10 +127,18 @@ class Calendar extends PureComponent {
 	)}
 }
 
-export default connect(state => ({
-	selectedDate: state.calendar.selectedDate,
-	selectedMonth: state.calendar.selectedMonth,
-	selectedYear: state.calendar.selectedYear,
-	visibleMonth: state.calendar.visibleMonth,
-	visibleYear: state.calendar.visibleYear,
-}))(stylesLoader.render(Calendar))
+const mapStateToProps = ({ calendar }) => ({
+	selectedDate: calendar.selectedDate,
+	selectedMonth: calendar.selectedMonth,
+	selectedYear: calendar.selectedYear,
+	visibleMonth: calendar.visibleMonth,
+	visibleYear: calendar.visibleYear,
+})
+
+export default (
+	connect(
+		mapStateToProps
+	)(
+		renderStyles(require('./Calendar.styl'))(Calendar)
+	)
+)
